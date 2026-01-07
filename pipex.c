@@ -6,7 +6,7 @@
 /*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 11:13:53 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/07 18:04:08 by anis             ###   ########.fr       */
+/*   Updated: 2026/01/07 18:42:20 by anis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,22 @@ int main(int argc, char **argv, char **envp)
 	}
 	id1 = fork();
 	if (id1 != 0)
-		id2 = fork();
-	if (id1 == 0)
+		id2 = fork(); // on refait le fork que si on est dans le parent
+	if (id1 == 0) // si on est dans le fils 1
 	{
-		close(pipe_fd[0]);
-		fd = open("test.txt", O_RDONLY);
-		dup2(fd, 0);
-		dup2(pipe_fd[1], 1);
-		close(pipe_fd[1]);
-		close(fd);
-		execve("/bin/cat", args1, envp);
+		close(pipe_fd[0]); // on ferme pcq on en a pas besoin
+		fd = open("test.txt", O_RDONLY); // on ouvre le fichier qu'on veux lire
+		dup2(fd, 0); // on redirige le fd 0 vers le fichier
+		dup2(pipe_fd[1], 1); // on redirige le fd 1 vers le pipe
+		close(pipe_fd[1]); // on ferme le fd du pipe car on a deja le fd 1
+		close(fd); // on ferme le fd
+		execve("/bin/cat", args1, envp); // on execute la commande
 	}
-	if (id2 == 0)
+	if (id2 == 0) // si on est dans le fils 2
 	{
-		close(pipe_fd[1]);
-		fd = open("result.txt", O_WRONLY);
-		dup2(fd, 1);
+		close(pipe_fd[1]); // on ferme le pipe d'ecriture
+		fd = open("result.txt", O_WRONLY); // on ouvre le fichier en mode ecriture (je dois gerer la creation)
+		dup2(fd, 1); // pareil que pour le fils 1
 		dup2(pipe_fd[0], 0);
 		close(pipe_fd[0]);
 		close(fd);
