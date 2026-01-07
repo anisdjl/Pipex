@@ -6,7 +6,7 @@
 /*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 11:13:53 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/05 21:32:39 by anis             ###   ########.fr       */
+/*   Updated: 2026/01/07 18:04:08 by anis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,55 +17,47 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <fcntl.h>
 
-int main(void)
+int main(int argc, char **argv, char **envp)
 {
-	int	fd[2];
-	int fd1[2];
-	int	id;
-	if (pipe(fd1) == -1)
-		return (1);
-	// fd[0] is for reading 
-	// fd[1] is for writing
-	if (pipe(fd) == -1)
-	{
-		printf("error while opening the pipe\n");
-		return (1);
-	}
-	id = fork();
+	int		fd;
+	int		pipe_fd[2];
+	char	*args1[2] = {"cat", NULL};
+	char	*args2[3] = {"wc", "-l", NULL};
+	int		id1;
+	int		id2;
+	// if argc < 4 ne fais rien
 
-	if (id == 0)
+	if (pipe(pipe_fd) == -1)
 	{
-		close(fd[0]);
-		int x;
-		x = 42;
-		write(fd[1], &x, sizeof(int));
-		close(fd[1]);
+		printf("error while opening the pipe");
+		return (0);
 	}
-	else
+	id1 = fork();
+	if (id1 != 0)
+		id2 = fork();
+	if (id1 == 0)
 	{
-		int y;
-		close(fd[1]);
-		read(fd[0], &y, sizeof(int));
-		close(fd[0]);
-		printf("got from the child process %d\n", y);
+		close(pipe_fd[0]);
+		fd = open("test.txt", O_RDONLY);
+		dup2(fd, 0);
+		dup2(pipe_fd[1], 1);
+		close(pipe_fd[1]);
+		close(fd);
+		execve("/bin/cat", args1, envp);
 	}
-
-	if (id != 0)
+	if (id2 == 0)
 	{
-		close(fd1[0]);
-		int anis = 12;
-		write(fd1[1], &anis, sizeof(int));
-		close(fd1[1]);
+		close(pipe_fd[1]);
+		fd = open("result.txt", O_WRONLY);
+		dup2(fd, 1);
+		dup2(pipe_fd[0], 0);
+		close(pipe_fd[0]);
+		close(fd);
+		execve("/usr/bin/wc", args2, envp);
 	}
-	else
-	{
-		int anis2;
-		close(fd1[1]);
-		read(fd1[0], &anis2, sizeof(int));
-		close(fd1[0]);
-		printf("got from parent process %d\n", anis2);
-	}
-	
+	close(pipe_fd[0]);
+	close(pipe_fd[1]);
 	return (0);
 }
