@@ -1,4 +1,0 @@
-0
-en cas d'erreur de creation de pipe on ferme tout et on free
-en cas d'erreur de malloc on ferme
-en cas d'acces interdit on ferme et on free

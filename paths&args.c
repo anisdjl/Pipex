@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:29:04 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/08 17:13:19 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/09 18:08:57 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,25 @@ char	*find_path(char **paths, char *args)
 	int		y;
 	char	*path_v1;
 	char	*final_path;
+	char	*path_joined;
 	
 	final_path = NULL;
 	path_v1 = ft_strjoin("/", args);
 	y = 0;
 	while (paths[y])
 	{
-		if (access(ft_strjoin(paths[y], path_v1), F_OK | X_OK) == 0)
+		path_joined = ft_strjoin(paths[y], path_v1);
+		if (access(path_joined, F_OK | X_OK) == 0) // ici que je ne free pas ?
 		{
-			final_path = ft_strjoin(paths[y], path_v1);
+			final_path = path_joined;
 			free (path_v1);
 			return (final_path);
 		}
 		else
+		{
 			y++;
+			free(path_joined);
+		}
 	}
 	free (path_v1);
 	return (final_path);
