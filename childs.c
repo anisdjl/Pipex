@@ -6,31 +6,29 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 17:26:11 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/23 17:58:17 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:05:59 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	childs(int y, t_data *data, int pipes[data->nb_pipes])
+void	childs(int a, int y, t_data *data, t_paths *cmd, int pipes[data->nb_pipes][2])
 {
-	int	y;
-	
 	if (y == 2)
 	{
-		test_infile(data, y); // si problem exit avec le message
-		test_cmd(data, y); // si probleme exit avec le message dans ce test pour le binary et le 'awk'
-		first_cmd(data, pipes);
+		test_infile(data);
+		test_cmd(data, cmd, y); // si probleme exit avec le message dans ce test pour le binary et le 'awk'
+		first_cmd(data, cmd, pipes, a);
 	}
 	else if (y == data->argc - 2)
 	{
-		test_outfile(data, y); // si erreur exit avec le message
-		test_cmd(data, y); // exit avec le message et c'est le code de celui la qu'on recupere
-		last_cmd(data, pipes);
+		test_outfile(data);
+		test_cmd(data, cmd, y);
+		last_cmd(data, cmd, pipes, a);
 	}
 	else
 	{
-		test_cmd(data, y); // si erreur affiche le code d'erreur + exit
-		middle_cmd(data, pipes);
+		test_cmd(data, cmd, y);
+		middle_cmd(data, cmd, pipes, a);
 	}
 }

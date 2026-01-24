@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 13:02:19 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/23 16:36:09 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:58:42 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,13 @@ void	close_pipes(t_data *data, int pipes[data->nb_pipes][2])
 		close(pipes[y][1]);
 		y++;
 	}
+}
+
+void	ft_free_paths(t_paths *cmd)
+{
+	if (cmd->args)
+		ft_free_tab(&cmd->args);
+	if (cmd->path)
+		free(cmd->path);
+	free(cmd);
 }

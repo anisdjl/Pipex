@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:57:02 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/23 16:32:22 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/24 14:24:44 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,10 @@ void	initialize_pids(int argc, int pids[argc - 3])
 		pids[y] = 0;
 		y++;
 	}
+}
+
+void	initialize_paths(t_paths *cmd)
+{
+	cmd->args = NULL;
+	cmd->path = NULL;
 }

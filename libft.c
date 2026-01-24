@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:24:52 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/08 17:04:21 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:11:00 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,21 @@ size_t	ft_strlen(const char *s)
 	while (s[y])
 		y++;
 	return (y);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	y;
+
+	y = 0;
+	while (s[y])
+	{
+		ft_putchar_fd(s[y], fd);
+		y++;
+	}
+}
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
 }
