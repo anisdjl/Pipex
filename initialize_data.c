@@ -64,7 +64,7 @@ void	initialize_pipes_pids(t_pipes *pipes, t_data *data, t_paths *cmd)
 	while (i < data->nb_pipes)
 	{
 		pipes->pipes[i] = malloc(sizeof(int) * 2);
-		if (!pipes->pids)
+		if (!pipes->pipes)
 		{
 			ft_free_pipes(pipes, data);
 			ft_free_paths(cmd);
