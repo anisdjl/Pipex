@@ -6,29 +6,45 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 17:26:11 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/24 18:05:59 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/25 17:41:45 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	childs(int a, int y, t_data *data, t_paths *cmd, int pipes[data->nb_pipes][2])
+void	childs(int y, t_data *data, t_paths *cmd, t_pipes *pipes)
 {
+	int	a;
+
+	a = y - 2;
 	if (y == 2)
 	{
-		test_infile(data);
-		test_cmd(data, cmd, y); // si probleme exit avec le message dans ce test pour le binary et le 'awk'
+		test_infile(data, cmd, pipes);
+		test_cmd(data, cmd, pipes, y);
 		first_cmd(data, cmd, pipes, a);
 	}
 	else if (y == data->argc - 2)
 	{
-		test_outfile(data);
-		test_cmd(data, cmd, y);
+		test_outfile(data, cmd, pipes);
+		test_cmd(data, cmd, pipes, y);
 		last_cmd(data, cmd, pipes, a);
 	}
 	else
 	{
-		test_cmd(data, cmd, y);
+		test_cmd(data, cmd, pipes, y);
 		middle_cmd(data, cmd, pipes, a);
 	}
+}
+
+void	ft_error(t_data *data, t_paths *cmd, t_pipes *pipes)
+{
+	ft_free_pipes(pipes, data);
+	ft_free_paths(cmd);
+	perror(data->argv[data->argc - 1]);
+	ft_free_data(data);
+}
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
 }

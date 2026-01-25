@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 13:02:19 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/24 16:58:42 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/25 17:45:07 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,34 @@ void	ft_free_data(t_data *data)
 	free(data);
 }
 
-void	opening_pipes(t_data *data, int pipes[data->nb_pipes][2])
+void	opening_pipes(t_data *data, t_pipes *pipes, t_paths *cmd)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < data->nb_pipes)
 	{
-		if (pipe(pipes[i]) == -1)
+		if (pipe(pipes->pipes[i]) == -1)
 		{
-			printf("problem while creating the pipe");
+			ft_free_pipes(pipes, data);
+			ft_free_paths(cmd);
+			ft_free_data(data);
+			perror("problem while creating the pipe");
 			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
 }
 
-void	close_pipes(t_data *data, int pipes[data->nb_pipes][2])
+void	close_pipes(t_data *data, t_pipes *pipes)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	while (y < data->nb_pipes)
 	{
-		close(pipes[y][0]);
-		close(pipes[y][1]);
+		close(pipes->pipes[y][0]);
+		close(pipes->pipes[y][1]);
 		y++;
 	}
 }
