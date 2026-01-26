@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 09:51:04 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/25 17:43:15 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:35:09 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int	main(int argc, char **argv, char **envp)
 	{
 		write(2, "Pipex : not enough arguments\n",
 			ft_strlen("Pipex : not enough arguments") + 1);
+		write(2, "Try with this syntax : file1 cmd1 cmd2 file2\n",
+			ft_strlen("Try with this syntax : file1 cmd1 cmd2 file2") + 1);
 		return (0);
 	}
 	status = creating(argc, argv, envp);

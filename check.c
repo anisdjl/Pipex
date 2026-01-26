@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 18:01:09 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/25 17:39:04 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/26 17:28:27 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,16 @@ void	test_cmd(t_data *data, t_paths *cmd, t_pipes *pipes, int y)
 	}
 	if (given_path(data, y))
 	{
-		cmd->path = data->argv[y];
+		ft_extract_cmd(data, cmd, pipes, y);
 		cmd->args = ft_split(data->argv[y], ' ');
+	}
+	else if (found_quote(data->argv[y]))
+	{
+		extract_args(data, cmd, pipes, y);
+		if (given_path(data, y))
+			ft_extract_cmd(data, cmd, pipes, y);
+		else
+			cmd->path = find_path(data, cmd, pipes);
 	}
 	else
 	{

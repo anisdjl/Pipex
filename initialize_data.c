@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:57:02 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/25 17:41:04 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/25 18:14:49 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	initialize_pids(t_data *data, t_paths *cmd, t_pipes *pipes)
 
 	y = 0;
 	pipes->pids = malloc(sizeof(int) * data->argc);
-	if (!pipes->pipes)
+	if (!pipes->pids)
 	{
 		ft_free_pipes(pipes, data);
 		ft_free_paths(cmd);
@@ -64,7 +64,7 @@ void	initialize_pipes_pids(t_pipes *pipes, t_data *data, t_paths *cmd)
 	while (i < data->nb_pipes)
 	{
 		pipes->pipes[i] = malloc(sizeof(int) * 2);
-		if (!pipes->pipes)
+		if (!pipes->pipes[i])
 		{
 			ft_free_pipes(pipes, data);
 			ft_free_paths(cmd);
