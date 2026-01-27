@@ -6,11 +6,11 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 17:26:11 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/26 10:08:36 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/27 10:31:19 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../inc/pipex.h"
 
 void	childs(int y, t_data *data, t_paths *cmd, t_pipes *pipes)
 {

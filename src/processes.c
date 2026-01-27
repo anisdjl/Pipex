@@ -6,11 +6,11 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:23:50 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/25 17:44:31 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/27 10:37:30 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../inc/pipex.h"
 
 void	the_loop(t_data *data, t_paths *cmd, t_pipes *pipes)
 {

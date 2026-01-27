@@ -6,11 +6,11 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 17:34:47 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/26 17:35:12 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/27 10:31:16 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../inc/pipex.h"
 
 static int	is_set(char c, char const *set)
 {

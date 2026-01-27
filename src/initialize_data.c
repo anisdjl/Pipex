@@ -6,11 +6,11 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:57:02 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/25 18:14:49 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/27 10:36:58 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../inc/pipex.h"
 
 void	initialize_data(t_data *data, int argc, char **argv, char **envp)
 {
@@ -73,5 +73,24 @@ void	initialize_pipes_pids(t_pipes *pipes, t_data *data, t_paths *cmd)
 		}
 		else
 			i++;
+	}
+}
+
+void	opening_pipes(t_data *data, t_pipes *pipes, t_paths *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nb_pipes)
+	{
+		if (pipe(pipes->pipes[i]) == -1)
+		{
+			ft_free_pipes(pipes, data);
+			ft_free_paths(cmd);
+			ft_free_data(data);
+			perror("problem while creating the pipe");
+			exit(EXIT_FAILURE);
+		}
+		i++;
 	}
 }

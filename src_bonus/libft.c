@@ -6,11 +6,11 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:24:52 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/25 18:13:00 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/27 10:31:09 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../inc/pipex.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

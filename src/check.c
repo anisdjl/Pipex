@@ -6,11 +6,11 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 18:01:09 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/26 17:28:27 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/27 10:36:28 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../inc/pipex.h"
 
 void	test_infile(t_data *data, t_paths *cmd, t_pipes *pipes)
 {
@@ -33,7 +33,6 @@ void	test_outfile(t_data *data, t_paths *cmd, t_pipes *pipes)
 	if (fd == -1)
 	{
 		ft_error(data, cmd, pipes);
-		close(fd);
 		exit(1);
 	}
 	if (access(data->argv[data->argc - 1], W_OK) == -1)
@@ -47,14 +46,8 @@ void	test_outfile(t_data *data, t_paths *cmd, t_pipes *pipes)
 void	test_cmd(t_data *data, t_paths *cmd, t_pipes *pipes, int y)
 {
 	if (data->argv[y][0] == '\0' || only_spaces(data->argv[y]))
-	{
-		ft_putstr_fd("pipex : command not found \n", 2);
-		ft_free_pipes(pipes, data);
-		ft_free_data(data);
-		ft_free_paths(cmd);
-		exit(127);
-	}
-	if (given_path(data, y))
+		cmd_nfound(data, cmd, pipes);
+	if (given_path(data, y) && !found_quote(data->argv[y]))
 	{
 		ft_extract_cmd(data, cmd, pipes, y);
 		cmd->args = ft_split(data->argv[y], ' ');

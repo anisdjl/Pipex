@@ -6,11 +6,11 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:50:57 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/25 17:43:33 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/27 10:30:58 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../inc/pipex.h"
 
 char	**get_paths(char **envp)
 {

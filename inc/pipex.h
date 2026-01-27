@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:48:12 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/26 18:11:22 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/27 10:38:19 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,10 @@ int		creating(int argc, char **argv, char **envp);
 char	*ft_strdup(const char *s);
 void	ft_extract_cmd(t_data *data, t_paths *cmd, t_pipes *pipes, int y);
 char	*ft_strtrim(char const *s1, char const *set);
-void 	masquage(t_data *data, int y);
+void	masquage(t_data *data, int y);
 void	demasquage(t_paths *cmd, int y);
 void	extract_args(t_data *data, t_paths *cmd, t_pipes *pipes, int y);
-int	found_quote(char *str);
+int		found_quote(char *str);
+void	cmd_nfound(t_data *data, t_paths *cmd, t_pipes *pipes);
 
 #endif

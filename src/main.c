@@ -6,11 +6,11 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 09:51:04 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/26 13:35:09 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/27 10:37:17 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../inc/pipex.h"
 
 int	the_maestro(t_data *data, t_paths *cmd, t_pipes *pipes)
 {
@@ -71,12 +71,10 @@ int	main(int argc, char **argv, char **envp)
 {
 	int	status;
 
-	if (argc < 5)
+	if (argc != 5)
 	{
-		write(2, "Pipex : not enough arguments\n",
-			ft_strlen("Pipex : not enough arguments") + 1);
-		write(2, "Try with this syntax : file1 cmd1 cmd2 file2\n",
-			ft_strlen("Try with this syntax : file1 cmd1 cmd2 file2") + 1);
+		ft_putstr_fd("Pipex : wrong number of arguments\n", 2);
+		ft_putstr_fd("Try with this syntax : file1 cmd1 cmd2 file2\n", 2);
 		return (0);
 	}
 	status = creating(argc, argv, envp);
