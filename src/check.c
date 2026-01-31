@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 18:01:09 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/27 10:36:28 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/31 12:28:01 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	test_infile(t_data *data, t_paths *cmd, t_pipes *pipes)
 {
 	if (access(data->argv[1], F_OK | R_OK) == -1)
 	{
+		close_pipes(data, pipes);
 		ft_free_pipes(pipes, data);
 		ft_free_paths(cmd);
 		perror(data->argv[1]);

@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:50:57 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/27 10:37:24 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/31 12:27:33 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*find_path(t_data *data, t_paths *cmd, t_pipes *pipes)
 		}
 	}
 	free (path_v1);
+	close_pipes(data, pipes);
 	ft_free_pipes(pipes, data);
 	ft_free_data(data);
 	ft_free_paths(cmd);

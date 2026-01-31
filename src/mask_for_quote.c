@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 08:58:56 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/27 10:37:13 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/31 12:30:18 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	extract_args(t_data *data, t_paths *cmd, t_pipes *pipes, int y)
 	cmd->args = ft_split(data->argv[y], ' ');
 	if (!cmd->args)
 	{
+		close_pipes(data, pipes);
 		ft_free_pipes(pipes, data);
 		ft_free_paths(cmd);
 		ft_free_data(data);

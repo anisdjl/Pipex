@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:23:50 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/27 10:30:54 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/31 12:40:51 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	first_cmd(t_data *data, t_paths *cmd, t_pipes *pipes, int a)
 	close_pipes(data, pipes);
 	execve(cmd->path, cmd->args, data->envp);
 	ft_putstr_fd("pipex : command not found\n", 2);
+	close_pipes(data, pipes);
 	ft_free_pipes(pipes, data);
 	ft_free_data(data);
 	ft_free_paths(cmd);
@@ -56,6 +57,7 @@ void	last_cmd(t_data *data, t_paths *cmd, t_pipes *pipes, int a)
 	close(fd);
 	execve(cmd->path, cmd->args, data->envp);
 	ft_putstr_fd("pipex : command not found\n", 2);
+	close_pipes(data, pipes);
 	ft_free_pipes(pipes, data);
 	ft_free_data(data);
 	ft_free_paths(cmd);
@@ -69,6 +71,7 @@ void	middle_cmd(t_data *data, t_paths *cmd, t_pipes *pipes, int a)
 	close_pipes(data, pipes);
 	execve(cmd->path, cmd->args, data->envp);
 	ft_putstr_fd("pipex : command not found\n", 2);
+	close_pipes(data, pipes);
 	ft_free_pipes(pipes, data);
 	ft_free_data(data);
 	ft_free_paths(cmd);

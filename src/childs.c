@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 17:26:11 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/27 10:36:38 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/31 12:33:05 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	childs(int y, t_data *data, t_paths *cmd, t_pipes *pipes)
 
 void	ft_error(t_data *data, t_paths *cmd, t_pipes *pipes)
 {
+	close_pipes(data, pipes);
 	ft_free_pipes(pipes, data);
 	ft_free_paths(cmd);
 	perror(data->argv[data->argc - 1]);
@@ -77,6 +78,7 @@ void	ft_extract_cmd(t_data *data, t_paths *cmd, t_pipes *pipes, int y)
 	splitted_path = ft_split(data->argv[y], ' ');
 	if (!splitted_path)
 	{
+		close_pipes(data, pipes);
 		ft_free_pipes(pipes, data);
 		ft_free_paths(cmd);
 		ft_free_data(data);
