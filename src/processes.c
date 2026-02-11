@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:23:50 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/31 12:41:43 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/11 10:54:13 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,13 @@ void	first_cmd(t_data *data, t_paths *cmd, t_pipes *pipes, int a)
 	close(fd);
 	close_pipes(data, pipes);
 	execve(cmd->path, cmd->args, data->envp);
-	ft_putstr_fd("pipex : command not found\n", 2);
+	ft_putstr_fd(cmd->args[0], 2);
+	ft_putstr_fd(" : permission denied\n", 2);
 	close_pipes(data, pipes);
 	ft_free_pipes(pipes, data);
 	ft_free_data(data);
 	ft_free_paths(cmd);
-	exit(127);
+	exit(126);
 }
 
 void	last_cmd(t_data *data, t_paths *cmd, t_pipes *pipes, int a)
@@ -56,12 +57,13 @@ void	last_cmd(t_data *data, t_paths *cmd, t_pipes *pipes, int a)
 	close_pipes(data, pipes);
 	close(fd);
 	execve(cmd->path, cmd->args, data->envp);
-	ft_putstr_fd("pipex : command not found\n", 2);
+	ft_putstr_fd(cmd->args[0], 2);
+	ft_putstr_fd(" : permission denied\n", 2);
 	close_pipes(data, pipes);
 	ft_free_pipes(pipes, data);
 	ft_free_data(data);
 	ft_free_paths(cmd);
-	exit(127);
+	exit(126);
 }
 
 void	middle_cmd(t_data *data, t_paths *cmd, t_pipes *pipes, int a)
@@ -70,10 +72,11 @@ void	middle_cmd(t_data *data, t_paths *cmd, t_pipes *pipes, int a)
 	dup2(pipes->pipes[a][1], 1);
 	close_pipes(data, pipes);
 	execve(cmd->path, cmd->args, data->envp);
-	ft_putstr_fd("pipex : command not found\n", 2);
+	ft_putstr_fd(cmd->args[0], 2);
+	ft_putstr_fd(" : permission denied\n", 2);
 	close_pipes(data, pipes);
 	ft_free_pipes(pipes, data);
 	ft_free_data(data);
 	ft_free_paths(cmd);
-	exit(127);
+	exit(126);
 }
